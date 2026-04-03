@@ -11,5 +11,22 @@ const employees = [
   { id: 10, name: "Gwen Grollmann" },
 ];
 
+export function getEmployees() {
+  return employees;
+}
+
+export function getEmployeeById(id) {
+  return employees.find((employee) => employee.id === parseInt(id));
+}
+
+export function addEmployee(name) {
+  const newId = employees.length + 1;
+  const newEmployee = {
+    id: newId,
+    name: name,
+  };
+  employees.push(newEmployee);
+  return newId;
+}
 /* WARNING: this must remain the default export in order for the tests to work! */
 export default employees;

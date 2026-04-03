@@ -1,8 +1,11 @@
 import express from "express";
 const app = express();
-export default app;
+app.use(express.json());
 
 import employees from "#db/employees";
+import employeeRouter from "#api/employees";
+
+app.use("/employees", employeeRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello employees!");
@@ -32,3 +35,9 @@ app.get("/employees/:id", (req, res) => {
 
   res.send(employee);
 });
+
+app.use((err, req, res, next) => {
+  res.status(500).send("Internal Server Error");
+});
+
+export default app;
